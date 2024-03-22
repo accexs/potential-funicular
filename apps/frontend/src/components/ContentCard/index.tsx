@@ -38,15 +38,15 @@ const ContentCard: React.FC<ContentCardProps> = ({title, img, rating, year}: Con
                 alt="poster"
                 className="object-center rounded"
             />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-80 rounded"/>
             <div className={`flex items-end justify-center transition-all duration-200 ${showOverlay ? "hidden" : ""}`}>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black opacity-80 rounded"/>
                 <div className="absolute font-thin tracking-widest mb-9">{title}</div>
                 <div className="absolute top-1/4 w-14 h-14">
                     <CirclePlayIcon/>
                 </div>
             </div>
             <div
-                className={`absolute inset-0 bg-[#242424] rounded transition-all duration-300 ${showOverlay ? "opacity-70" : "opacity-0"}`}
+                className={`absolute inset-0 rounded transition-all duration-300 ${showOverlay ? "backdrop-opacity-10 bg-[#242424]/50" : "opacity-0"}`}
             >
                 <div className="flex flex-col justify-end w-full h-full px-8 pb-5 gap-4">
                     <div className="flex gap-3 items-center">
@@ -54,15 +54,14 @@ const ContentCard: React.FC<ContentCardProps> = ({title, img, rating, year}: Con
                     </div>
                     <div className="flex justify-between">
                         <div className="flex items-center gap-2">
-                            <span className=""><StarIcon/></span>{rating}
+                            <span><StarIcon/></span>{rating}
                         </div>
                         <div>{year}</div>
                     </div>
                 </div>
             </div>
         </div>
-    )
-        ;
+    );
 }
 
 export default ContentCard

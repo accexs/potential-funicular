@@ -44,9 +44,14 @@ const AddContent: React.FC = () => {
         inputRef.current.click();
     }
 
+    console.log('test', isSidebarOpen)
+
     return (
-        <div className={`absolute inset-0 flex flex-col w-full p-4 px-6 z-20 bg-brandGray items-center tracking-wider
-        ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out`}>
+        <div
+            className={`fixed flex flex-col items-center p-4 px-6 tracking-wider z-20 bg-brandGray ${
+                isSidebarOpen ? '-translate-x-0' : 'translate-x-full'
+            } top-0 end-0 transform h-screen w-screen transition-transform duration-300 ease-in-out`}
+        >
             <div className="mt-28 text-brandGreen">
                 <h2 className="text-xl">Agregar Pelicula</h2>
             </div>

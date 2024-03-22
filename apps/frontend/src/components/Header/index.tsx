@@ -6,20 +6,7 @@ import PlusIcon from "@/components/Icons/PlusIcon";
 import {GlobalContext} from "@/context/GlobalContext";
 
 const Header: React.FC = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const {isSidebarOpen, setIsSidebarOpen, toggleSidebar,} = useContext(GlobalContext)
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    useEffect(() => {
-        if (isMenuOpen) {
-            document.body.style.overflow = 'hidden'
-        } else {
-            document.body.style.overflow = 'unset'
-        }
-    }, [isMenuOpen])
+    const {isSidebarOpen, setIsSidebarOpen, toggleSidebar, isMenuOpen, toggleMenu} = useContext(GlobalContext)
 
     const handleAddContent = () => {
         console.log('toggle sidebar')
@@ -53,25 +40,28 @@ const Header: React.FC = () => {
                     alt="profile image"
                     className="w-10 h-10 rounded-full border border-black bg-white"
                 />
-            </nav>
-            {isMenuOpen && (
-                <div className="fixed inset-0 flex flex-col items-start bg-brandGray -z-10">
-                    <div className="flex flex-col gap-7 text-white uppercase pt-24 px-6 font-thin">
-                        <div className="hover:font-bold hover:cursor-pointer" onClick={toggleMenu}>Inicio</div>
-                        <div className="hover:font-bold hover:cursor-pointer">Series</div>
-                        <div className="hover:font-bold hover:cursor-pointer">Peliculas</div>
-                        <div className="hover:font-bold hover:cursor-pointer">Agregados Recientemente</div>
-                        <div className="hover:font-bold hover:cursor-pointer">Populares</div>
-                        <div className="hover:font-bold hover:cursor-pointer">Mis Peliculas</div>
-                        <div className="hover:font-bold hover:cursor-pointer">Mis Lista</div>
-                        <div className="hover:font-extrabold hover:cursor-pointer flex items-center gap-2 font-bold py-7"
-                             onClick={handleAddContent}>
-                            <PlusIcon /> Agregar Pelicula
+                {1 && (
+                    <div className={`fixed flex flex-col items-start bg-brandGray -z-10 ${
+                        isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+                    } top-0 start-0 transform h-screen w-screen transition-transform duration-300 ease-in-out`}>
+                        <div className="flex flex-col gap-7 text-white uppercase pt-24 px-6 font-thin">
+                            <div className="hover:font-bold hover:cursor-pointer" onClick={toggleMenu}>Inicio</div>
+                            <div className="hover:font-bold hover:cursor-pointer">Series</div>
+                            <div className="hover:font-bold hover:cursor-pointer">Peliculas</div>
+                            <div className="hover:font-bold hover:cursor-pointer">Agregados Recientemente</div>
+                            <div className="hover:font-bold hover:cursor-pointer">Populares</div>
+                            <div className="hover:font-bold hover:cursor-pointer">Mis Peliculas</div>
+                            <div className="hover:font-bold hover:cursor-pointer">Mis Lista</div>
+                            <div
+                                className="hover:font-extrabold hover:cursor-pointer flex items-center gap-2 font-bold py-7"
+                                onClick={handleAddContent}>
+                                <PlusIcon/> Agregar Pelicula
+                            </div>
+                            <div className="text-xl hover:font-bold">Cerrar Sesión</div>
                         </div>
-                        <div className="text-xl hover:font-bold">Cerrar Sesión</div>
                     </div>
-                </div>
-            )}
+                )}
+            </nav>
         </header>
     );
 }
